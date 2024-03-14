@@ -1,0 +1,305 @@
+Program.Sub.ScreenSU.Start
+Gui.F_CSWPG..Create
+Gui.F_CSWPG..Caption("Cut/Shape Weight & Part Generator")
+Gui.F_CSWPG..Size(10170,4605)
+Gui.F_CSWPG..MinX(0)
+Gui.F_CSWPG..MinY(0)
+Gui.F_CSWPG..Position(0,0)
+Gui.F_CSWPG..BackColor(-2147483633)
+Gui.F_CSWPG..MousePointer(0)
+Gui.F_CSWPG..Event(UnLoad,F_CSWPG_UnLoad)
+Gui.F_CSWPG.ddlType.Create(DropDownList)
+Gui.F_CSWPG.ddlType.Size(2400,330)
+Gui.F_CSWPG.ddlType.Position(480,435)
+Gui.F_CSWPG.ddlType.AddItem("RECTANGLE/SQUARE")
+Gui.F_CSWPG.ddlType.AddItem("CIRCLE")
+Gui.F_CSWPG.ddlType.AddItem("OD/ID")
+Gui.F_CSWPG.ddlType.Event(Change,ddlType_Click)
+Gui.F_CSWPG.txtGrade.Create(TextBox,"",True,1215,300,0,480,1245,True,0,"Arial",8,-2147483643,1)
+Gui.F_CSWPG.txtThickness.Create(TextBox,"",True,1215,300,0,2025,1245,True,0,"Arial",8,-2147483643,1)
+Gui.F_CSWPG.txtThickness.Event(LostFocus,txtThickness_LostFocus)
+Gui.F_CSWPG.txtThickness.NumericOnly(2)
+Gui.F_CSWPG.txtWidth.Create(TextBox,"",True,1215,300,0,3600,1245,True,0,"Arial",8,-2147483643,1)
+Gui.F_CSWPG.txtWidth.Event(LostFocus,txtThickness_LostFocus)
+Gui.F_CSWPG.txtWidth.NumericOnly(2)
+Gui.F_CSWPG.txtLength.Create(TextBox,"",True,1215,300,0,5190,1245,True,0,"Arial",8,-2147483643,1)
+Gui.F_CSWPG.txtLength.Event(LostFocus,txtThickness_LostFocus)
+Gui.F_CSWPG.txtLength.NumericOnly(2)
+Gui.F_CSWPG.txtOD.Create(TextBox,"",True,1215,300,0,6810,1245,True,0,"Arial",8,-2147483643,1)
+Gui.F_CSWPG.txtOD.Event(LostFocus,txtThickness_LostFocus)
+Gui.F_CSWPG.txtOD.NumericOnly(2)
+Gui.F_CSWPG.txtID.Create(TextBox,"",True,1215,300,0,8415,1245,True,0,"Arial",8,-2147483643,1)
+Gui.F_CSWPG.txtID.Event(LostFocus,txtThickness_LostFocus)
+Gui.F_CSWPG.txtID.NumericOnly(2)
+Gui.F_CSWPG.txtPartNumber.Create(TextBox,"",True,3405,300,0,480,2190,True,0,"Arial",8,-2147483643,1)
+Gui.F_CSWPG.txtWeight.Create(TextBox,"",True,1215,300,0,4800,2190,False,0,"Arial",8,-2147483643,1)
+Gui.F_CSWPG.txtWeight.NumericOnly(2)
+Gui.F_CSWPG.txtPartDescription.Create(TextBox,"",True,3420,300,0,480,2985,True,0,"Arial",8,-2147483643,1)
+Gui.F_CSWPG.lblGrade.Create(Label,"Grade",True,1185,255,0,480,945,True,0,"Arial",8,-2147483633,0)
+Gui.F_CSWPG.lblThickness.Create(Label,"Thickness",True,1185,255,0,2025,945,True,0,"Arial",8,-2147483633,0)
+Gui.F_CSWPG.lblWidth.Create(Label,"Width",True,1185,255,0,3600,945,True,0,"Arial",8,-2147483633,0)
+Gui.F_CSWPG.lblLength.Create(Label,"Length",True,1185,255,0,5190,945,True,0,"Arial",8,-2147483633,0)
+Gui.F_CSWPG.lblOD.Create(Label,"OD",True,1185,255,0,6810,945,True,0,"Arial",8,-2147483633,0)
+Gui.F_CSWPG.lblID.Create(Label,"ID",True,1185,255,0,8415,945,True,0,"Arial",8,-2147483633,0)
+Gui.F_CSWPG.lblPartNumber.Create(Label,"Part Number",True,1185,255,0,480,1905,True,0,"Arial",8,-2147483633,0)
+Gui.F_CSWPG.lblWeight.Create(Label,"Weight",True,1185,255,0,4800,1905,True,0,"Arial",8,-2147483633,0)
+Gui.F_CSWPG.lblPartDescription.Create(Label,"Part Description",True,1950,255,0,480,2745,True,0,"Arial",8,-2147483633,0)
+Gui.F_CSWPG.cmdCalculate.Create(Button)
+Gui.F_CSWPG.cmdCalculate.Size(975,375)
+Gui.F_CSWPG.cmdCalculate.Position(480,3810)
+Gui.F_CSWPG.cmdCalculate.Caption("Calculate")
+Gui.F_CSWPG.cmdCalculate.Event(Click,cmdCalculate_Click)
+Gui.F_CSWPG.cmdSave.Create(Button)
+Gui.F_CSWPG.cmdSave.Size(975,375)
+Gui.F_CSWPG.cmdSave.Position(2070,3810)
+Gui.F_CSWPG.cmdSave.Caption("Save")
+Gui.F_CSWPG.cmdSave.Event(Click,cmdSave_Click)
+Gui.F_CSWPG.lblQty.Create(Label,"Quantity",True,1935,255,0,4800,2745,True,0,"Arial",8,-2147483633,0)
+Gui.F_CSWPG.lblQty.DefaultValue("")
+Gui.F_CSWPG.txtQty.Create(TextBox,"",True,1215,300,0,4800,2985,True,0,"Arial",8,-2147483643,1)
+Gui.F_CSWPG.txtQty.NumericOnly(2)
+Gui.F_CSWPG.txtQty.DefaultValue("1")
+Program.Sub.ScreenSU.End
+
+Program.Sub.Preflight.Start
+Program.Sub.Preflight.End
+
+Program.Sub.Main.Start
+'Created by Pablo Salinas for Warren Fabricating & Machining Corp on 03/18/2019
+'This is for ARC Project 5478. The purpose of this script is to add a Disclaimer Pop-up on GUI when Clocking off the Job
+
+F.Intrinsic.Control.Try
+	V.Local.sError.Declare	
+	'HOOK TO RENAME THE BUTTON AND HAVE THE SCRIPT LAUNCHE WHEN PUSHING BUTTON 2 ON THE SALES ORDER LINES QUOTE LINES SCREEN
+	
+	F.Intrinsic.Control.SelectCase(V.Caller.Hook)
+		F.Intrinsic.Control.Case(12010)
+			V.Passed.000141.Set("Cut/Shape")
+		
+		F.Intrinsic.Control.Case(12420)
+			Gui.F_CSWPG..Show
+			
+		F.Intrinsic.Control.Case(10260)
+			V.Passed.000202.Set("Cut/Shape")	
+		
+		F.Intrinsic.Control.Case(10680)
+			Gui.F_CSWPG..Show
+			
+	F.Intrinsic.Control.EndSelect
+	
+	F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Catch
+	F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+		F.Intrinsic.String.Build("Project: {0}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}","GCG_5478_CPCQL.g2u",V.Ambient.NewLine,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Local.sError)
+		F.Intrinsic.UI.Msgbox(V.Local.sError)
+		F.Intrinsic.Control.CallSub(F_RouterCopier_UnLoad)
+	F.Intrinsic.Control.EndIf
+Function.Intrinsic.Control.EndTry
+
+
+Program.Sub.Main.End
+
+Program.Sub.F_CSWPG_UnLoad.Start
+F.Intrinsic.Control.Try
+	V.Local.sError.Declare
+	F.Intrinsic.Control.End
+	
+	F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Catch
+	F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+		F.Intrinsic.String.Build("Project: {0}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}","GCG_5478_CPCQL.g2u",V.Ambient.NewLine,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Local.sError)
+		F.Intrinsic.UI.Msgbox(V.Local.sError)
+		F.Intrinsic.Control.CallSub(F_RouterCopier_UnLoad)
+	F.Intrinsic.Control.EndIf
+Function.Intrinsic.Control.EndTry
+Program.Sub.F_CSWPG_UnLoad.End
+
+Program.Sub.cmdCalculate_Click.Start
+F.Intrinsic.Control.Try
+	V.Local.sError.Declare
+	V.Global.fWeight.Declare
+	v.Local.fODID.Declare
+	v.Local.sPartDesc.Declare
+	
+	
+	'CALCULATES THE WEIGHT, CREATES THE PART DESCRIPTION AND ADDS IT TO THE TEXTBOXES
+	F.Intrinsic.Control.If(V.Screen.F_CSWPG!ddlType.Text,=,"RECTANGLE/SQUARE")
+		F.Intrinsic.Math.Evaluate("[v.Screen.F_CSWPG!txtThickness.Text]*[v.Screen.F_CSWPG!txtWidth.Text]*[v.Screen.F_CSWPG!txtLength.Text]*0.2836", v.Global.fWeight)
+		F.Intrinsic.String.Format(v.Global.fWeight,"0######.####",v.Global.fWeight)
+		F.Intrinsic.String.Build("{0} {1}X{2}X{3}", v.Screen.F_CSWPG!txtGrade.Text, v.Screen.F_CSWPG!txtThickness.Text, v.Screen.F_CSWPG!txtWidth.Text, v.Screen.F_CSWPG!txtLength.Text, v.Local.sPartDesc)
+		gui.F_CSWPG.txtWeight.Text(V.Global.fWeight)
+		gui.F_CSWPG.txtPartDescription.Text(v.Local.sPartDesc)
+	F.Intrinsic.Control.ElseIf(V.Screen.F_CSWPG!ddlType.Text,=,"CIRCLE")
+		F.Intrinsic.Math.Evaluate("[v.Screen.F_CSWPG!txtThickness.Text]*([v.Screen.F_CSWPG!txtOD.Text]*[v.Screen.F_CSWPG!txtOD.Text])*0.2227", v.Global.fWeight)
+		F.Intrinsic.String.Format(v.Global.fWeight,"0######.####",v.Global.fWeight)
+		F.Intrinsic.String.Build("{0} {1}X{2}OD", v.Screen.F_CSWPG!txtGrade.Text, v.Screen.F_CSWPG!txtThickness.Text, v.Screen.F_CSWPG!txtOD.Text, v.Local.sPartDesc)
+		gui.F_CSWPG.txtWeight.Text(V.Global.fWeight)
+		gui.F_CSWPG.txtPartDescription.Text(v.Local.sPartDesc)
+		
+		'ID CANNOT BE GREATER THAN OD
+	F.Intrinsic.Control.ElseIf(V.Screen.F_CSWPG!ddlType.Text,=,"OD/ID")
+		F.Intrinsic.Control.If(v.Screen.F_CSWPG!txtOD.Text,<,v.Screen.F_CSWPG!txtID.Text)
+			F.Intrinsic.UI.Msgbox("ERROR: ID greater than OD! ID cannot be greater than OD")
+			gui.F_CSWPG.txtOD.Text("0")
+			gui.F_CSWPG.txtID.Text("0")
+		F.Intrinsic.Control.Else
+			F.Intrinsic.Math.Evaluate("[v.Screen.F_CSWPG!txtThickness.Text]*([v.Screen.F_CSWPG!txtOD.Text]*[v.Screen.F_CSWPG!txtOD.Text])*0.2227", v.Local.fODID)
+			F.Intrinsic.Math.Evaluate("[v.Screen.F_CSWPG!txtThickness.Text]*([v.Screen.F_CSWPG!txtID.Text]*[v.Screen.F_CSWPG!txtID.Text])*0.2227", v.Global.fWeight)
+			F.Intrinsic.Math.Sub(v.Local.fODID,v.Global.fWeight,v.Global.fWeight)
+			F.Intrinsic.String.Format(v.Global.fWeight,"0######.####",v.Global.fWeight)
+			F.Intrinsic.String.Build("{0} {1}X{2}ODX{3}ID", v.Screen.F_CSWPG!txtGrade.Text, v.Screen.F_CSWPG!txtThickness.Text, v.Screen.F_CSWPG!txtOD.Text, v.Screen.F_CSWPG!txtID.Text, v.Local.sPartDesc)
+			gui.F_CSWPG.txtWeight.Text(V.Global.fWeight)
+			gui.F_CSWPG.txtPartDescription.Text(v.Local.sPartDesc)
+		F.Intrinsic.Control.EndIf	
+	F.Intrinsic.Control.EndIf
+
+	F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Catch
+	F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+		F.Intrinsic.String.Build("Project: {0}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}","GCG_5478_CPCQL.g2u",V.Ambient.NewLine,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Local.sError)
+		F.Intrinsic.UI.Msgbox(V.Local.sError)
+		F.Intrinsic.Control.CallSub(F_RouterCopier_UnLoad)
+	F.Intrinsic.Control.EndIf
+Function.Intrinsic.Control.EndTry
+
+Program.Sub.cmdCalculate_Click.End
+
+Program.Sub.txtThickness_LostFocus.Start
+F.Intrinsic.Control.Try
+	V.Local.sError.Declare
+	v.Local.fValue.Declare
+	
+	'FORMATTING THE VALUES OF THE TEXTBOXES TO 4 DECIMALS .####
+	F.Intrinsic.String.Format(v.Screen.F_CSWPG!txtThickness.Text,"0######.####",v.Local.fValue)
+	gui.F_CSWPG.txtThickness.Text(V.Local.fValue)
+	
+	F.Intrinsic.String.Format(v.Screen.F_CSWPG!txtWidth.Text,"0######.####",v.Local.fValue)
+	gui.F_CSWPG.txtWidth.Text(V.Local.fValue)
+	
+	F.Intrinsic.String.Format(v.Screen.F_CSWPG!txtLength.Text,"0######.####",v.Local.fValue)
+	gui.F_CSWPG.txtLength.Text(V.Local.fValue)
+	
+	F.Intrinsic.String.Format(v.Screen.F_CSWPG!txtOD.Text,"0######.####",v.Local.fValue)
+	gui.F_CSWPG.txtOD.Text(V.Local.fValue)
+	
+	F.Intrinsic.String.Format(v.Screen.F_CSWPG!txtID.Text,"0######.####",v.Local.fValue)
+	gui.F_CSWPG.txtID.Text(V.Local.fValue)
+	
+
+	F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Catch
+	F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+		F.Intrinsic.String.Build("Project: {0}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}","GCG_5478_CPCQL.g2u",V.Ambient.NewLine,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Local.sError)
+		F.Intrinsic.UI.Msgbox(V.Local.sError)
+		F.Intrinsic.Control.CallSub(F_RouterCopier_UnLoad)
+	F.Intrinsic.Control.EndIf
+Function.Intrinsic.Control.EndTry
+
+
+Program.Sub.txtThickness_LostFocus.End
+
+Program.Sub.ddlType_Click.Start
+F.Intrinsic.Control.Try
+	V.Local.sError.Declare
+
+
+	'ONLY ALLOWING THE CORRECT FIELDS TO ACCEPT INPUT AND SETTING THE FIELDS TO A DEFAULT OF 0
+	'ALSO SETTING THE PART NUMBER
+	F.Intrinsic.Control.If(V.Screen.F_CSWPG!ddlType.Text,=,"RECTANGLE/SQUARE")
+		gui.F_CSWPG.txtOD.Enabled(False)
+		gui.F_CSWPG.txtID.Enabled(False)
+		gui.F_CSWPG.txtThickness.Enabled(True)
+		gui.F_CSWPG.txtWidth.Enabled(True)
+		gui.F_CSWPG.txtLength.Enabled(True)
+		gui.F_CSWPG.txtThickness.Text("0")
+		gui.F_CSWPG.txtWidth.Text("0")
+		gui.F_CSWPG.txtLength.Text("0")
+		gui.F_CSWPG.txtOD.Text("0")
+		gui.F_CSWPG.txtID.Text("0")
+		gui.F_CSWPG.txtWeight.Text("0")
+		gui.F_CSWPG.txtPartNumber.Text("RECTANGLE/SQUARE")
+		gui.F_CSWPG.txtPartDescription.Text("")
+	F.Intrinsic.Control.ElseIf(V.Screen.F_CSWPG!ddlType.Text,=,"CIRCLE")
+		gui.F_CSWPG.txtWidth.Enabled(False)
+		gui.F_CSWPG.txtLength.Enabled(False)
+		gui.F_CSWPG.txtID.Enabled(False)
+		gui.F_CSWPG.txtThickness.Enabled(True)
+		gui.F_CSWPG.txtOD.Enabled(True)
+		gui.F_CSWPG.txtThickness.Text("0")
+		gui.F_CSWPG.txtWidth.Text("0")
+		gui.F_CSWPG.txtLength.Text("0")
+		gui.F_CSWPG.txtOD.Text("0")
+		gui.F_CSWPG.txtID.Text("0")
+		gui.F_CSWPG.txtWeight.Text("0")
+		gui.F_CSWPG.txtPartNumber.Text("CIRCLE")
+		gui.F_CSWPG.txtPartDescription.Text("")
+	F.Intrinsic.Control.ElseIf(V.Screen.F_CSWPG!ddlType.Text,=,"OD/ID")
+		gui.F_CSWPG.txtWidth.Enabled(False)
+		gui.F_CSWPG.txtLength.Enabled(False)
+		gui.F_CSWPG.txtThickness.Enabled(True)
+		gui.F_CSWPG.txtOD.Enabled(True)
+		gui.F_CSWPG.txtID.Enabled(True)
+		gui.F_CSWPG.txtThickness.Text("0")
+		gui.F_CSWPG.txtWidth.Text("0")
+		gui.F_CSWPG.txtLength.Text("0")
+		gui.F_CSWPG.txtOD.Text("0")
+		gui.F_CSWPG.txtID.Text("0")
+		gui.F_CSWPG.txtWeight.Text("0")
+		gui.F_CSWPG.txtPartNumber.Text("OD/ID")
+		gui.F_CSWPG.txtPartDescription.Text("")
+	F.Intrinsic.Control.Else
+		F.Intrinsic.UI.Msgbox("Select a Type")
+	F.Intrinsic.Control.EndIf
+	
+	F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Catch
+	F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+		F.Intrinsic.String.Build("Project: {0}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}","GCG_5478_CPCQL.g2u",V.Ambient.NewLine,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Local.sError)
+		F.Intrinsic.UI.Msgbox(V.Local.sError)
+		F.Intrinsic.Control.CallSub(F_RouterCopier_UnLoad)
+	F.Intrinsic.Control.EndIf
+Function.Intrinsic.Control.EndTry	
+
+Program.Sub.ddlType_Click.End
+
+Program.Sub.cmdSave_Click.Start
+F.Intrinsic.Control.Try
+	V.Local.sError.Declare
+	V.Local.fWeight.Declare
+	
+	'Variable.Passed.000052 - Part
+	'Variable.Passed.000016 - weight
+	'Variable.Passed.000056 - description
+	'Variable.Passed.000006 - uom
+	'Variable.Passed.000013 - PL
+	
+	F.Intrinsic.Control.If(V.Screen.F_CSWPG!txtPartNumber.Text,=,"", "or",v.Screen.F_CSWPG!txtPartDescription.Text,=, "")
+		F.Intrinsic.UI.Msgbox("Part Number/Description cannot be left blank")
+	F.Intrinsic.Control.Else
+		Variable.Passed.000052.Set(V.Screen.F_CSWPG!txtPartNumber.Text)
+		Variable.Passed.000056.Set(v.Screen.F_CSWPG!txtPartDescription.Text)
+		Variable.Passed.000006.Set("EA")
+		Variable.Passed.000013.Set("02")
+		F.Intrinsic.Math.Mult(V.Global.fWeight,V.Screen.F_CSWPG!txtQty.Text,V.Local.fWeight)
+		Variable.Passed.000016.Set(V.Local.fWeight)
+		V.Passed.000007.Set(V.Screen.F_CSWPG!txtQty.Text)
+		F.Intrinsic.Control.End
+	F.Intrinsic.Control.EndIf
+	
+	
+	F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Catch
+	F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+		F.Intrinsic.String.Build("Project: {0}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}","GCG_5478_CPCQL.g2u",V.Ambient.NewLine,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Local.sError)
+		F.Intrinsic.UI.Msgbox(V.Local.sError)
+		F.Intrinsic.Control.CallSub(F_RouterCopier_UnLoad)
+	F.Intrinsic.Control.EndIf
+Function.Intrinsic.Control.EndTry
+
+Program.Sub.cmdSave_Click.End
